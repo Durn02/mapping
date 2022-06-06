@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>회차별 상연 극장</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <style>
+            html, body, #mapid{
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id = 'mapid'>
+        </div>
+        <script>
+            var map = L.map('mapid').setView([37.57667, 127], 13);
+            var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+                attribution:'&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors'
+            }).addTo(map);
+            var GoogleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                subdomains:['mt0','mt1','mt2','mt3']
+            })
+            var GoogleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                subdomains:['mt0','mt1','mt2','mt3']
+            })
+            var GoogleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                subdomains:['mt0','mt1','mt2','mt3']
+            })
+            var GoogleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                subdomains:['mt0','mt1','mt2','mt3']
+            })
+            var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                subdomains: 'abcd',
+                minZoom: 1,
+                maxZoom: 16,
+                ext: 'jpg'
+            });
+
+            var baseMaps = {
+                "GoogleStreetMap": GoogleStreets,
+                "GoogleSatelliteMap":GoogleSat,
+                "GoogleTerrain":GoogleTerrain,
+                "GoogleHybrid":GoogleHybrid,
+                "Watercolor":Stamen_Watercolor,
+                "OpenStreetMap":osm
+            };
+            
+            L.control.layers(baseMaps).addTo(map);
+  
+            var myIcon = L.Icon.extend({
+                options: {
+                shadowUrl: 'image/myicon_shadow.png',
+                iconSize:     [46, 62],
+                shadowSize:   [44, 22],
+                iconAnchor:   [23, 62],
+                shadowAnchor: [4, 22],
+                popupAnchor:  [0, -62]
+                }
+            });
+
+            var theaterIcon = new myIcon({iconUrl: 'image/myicon_theater.png'});
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+      
+            var map_31 = L.layerGroup();
+            var map_32 = L.layerGroup();
+            var map_33 = L.layerGroup();
+            var map_34 = L.layerGroup();
+            var map_35 = L.layerGroup();
+            var map_36 = L.layerGroup();
+            var map_37 = L.layerGroup();
+            var map_38 = L.layerGroup();
+            var map_39 = L.layerGroup();
+            var map_40 = L.layerGroup();
+            var map_41 = L.layerGroup();
+            var map_42 = L.layerGroup();
+
+            var overlays = {
+                "제31회_서울연극제": map_31,
+                "제32회_서울연극제": map_32,
+                "제33회_서울연극제": map_33,
+                "제34회_서울연극제": map_34,
+                "제35회_서울연극제": map_35,
+                "제36회_서울연극제": map_36,
+                "제37회_서울연극제": map_37,
+                "제38회_서울연극제": map_38,
+                "제39회_서울연극제": map_39,
+                "제40회_서울연극제": map_40,
+                "제41회_서울연극제": map_41,
+                "제42회_서울연극제": map_42
+            };
+
+            var ctr_mapLayers = L.control.layers(null, overlays, {collapsed:false, position:'bottomleft'}).addTo(map);
+        
+            var geodata =[
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제32회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제33회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제34회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제35회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제37회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제38회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제39회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제40회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제41회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+            {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제42회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
+
+            {"type": "Feature", "properties": {"name": "동양예술극장", "class": "Theater", "category": "제36회_서울연극제", "form": "point", "address": "서울특별시 종로구 혜화동 163-24", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC001087"}, "geometry": {"type": "Point", "coordinates": [127, 37.584531]}},
+            {"type": "Feature", "properties": {"name": "동양예술극장", "class": "Theater", "category": "제37회_서울연극제", "form": "point", "address": "서울특별시 종로구 혜화동 163-24", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC001087"}, "geometry": {"type": "Point", "coordinates": [127, 37.584531]}},
+            {"type": "Feature", "properties": {"name": "동양예술극장", "class": "Theater", "category": "제38회_서울연극제", "form": "point", "address": "서울특별시 종로구 혜화동 163-24", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC001087"}, "geometry": {"type": "Point", "coordinates": [127, 37.584531]}},
+            {"type": "Feature", "properties": {"name": "동양예술극장", "class": "Theater", "category": "제39회_서울연극제", "form": "point", "address": "서울특별시 종로구 혜화동 163-24", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC001087"}, "geometry": {"type": "Point", "coordinates": [127, 37.584531]}},
+            {"type": "Feature", "properties": {"name": "동양예술극장", "class": "Theater", "category": "제40회_서울연극제", "form": "point", "address": "서울특별시 종로구 혜화동 163-24", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC001087"}, "geometry": {"type": "Point", "coordinates": [127, 37.584531]}},
+
+            {"type": "Feature", "properties": {"name": "씨어터_쿰", "class": "Theater", "category": "제42회_서울연극제", "form": "point", "address": "서울특별시 종로구 혜화동 창경궁로 253-7 B1", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC002588"}, "geometry": {"type": "Point", "coordinates": [126.99946, 37.58459]}},
+
+            {"type": "Feature", "properties": {"name": "아르코예술극장", "class": "Theater", "category": "제31회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로8길 7", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127, 37.581195]}},
+            {"type": "Feature", "properties": {"name": "아르코예술극장", "class": "Theater", "category": "제32회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로8길 7", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127, 37.581195]}},
+            {"type": "Feature", "properties": {"name": "아르코예술극장", "class": "Theater", "category": "제33회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로8길 7", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127, 37.581195]}},
+            {"type": "Feature", "properties": {"name": "아르코예술극장", "class": "Theater", "category": "제34회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로8길 7", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127, 37.581195]}},
+            {"type": "Feature", "properties": {"name": "아르코예술극장", "class": "Theater", "category": "제35회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로8길 7", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127, 37.581195]}},
+            {"type": "Feature", "properties": {"name": "아르코예술극장", "class": "Theater", "category": "제38회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로8길 7", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127, 37.581195]}},
+            {"type": "Feature", "properties": {"name": "아르코예술극장", "class": "Theater", "category": "제39회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로8길 7", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127, 37.581195]}},
+            {"type": "Feature", "properties": {"name": "아르코예술극장", "class": "Theater", "category": "제42회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로8길 7", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127, 37.581195]}},
+
+            {"type": "Feature", "properties": {"name": "아트원씨어터", "class": "Theater", "category": "제39회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로12길 83", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC000833"}, "geometry": {"type": "Point", "coordinates": [127.00399, 37.58023]}},
+            {"type": "Feature", "properties": {"name": "아트원씨어터", "class": "Theater", "category": "제42회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로12길 83", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC000833"}, "geometry": {"type": "Point", "coordinates": [127.00399, 37.58023]}},
+
+            {"type": "Feature", "properties": {"name": "한양레퍼토리_씨어터", "class": "Theater", "category": "제41회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로 144 중원빌딩 B1", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC000188"}, "geometry": {"type": "Point", "coordinates": [127.00176, 37.5839]}},
+            
+            {"type": "Feature", "properties": {"name": "홍대_대학로_아트센터", "class": "Theater", "category": "제41회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로 57", "refurl": "http://www.hongikartcenter.com/main.do"}, "geometry": {"type": "Point", "coordinates": [127, 37.57667]}},
+
+            {"type": "Feature", "properties": {"name": "SH아트홀", "class": "Theater", "category": "제37회_서울연극제", "form": "point", "address": "서울특별시 종로구 동숭길 25 SH아트홀", "refurl": "https://www.facebook.com/sharthall/"}, "geometry": {"type": "Point", "coordinates": [127, 37.58004]}},
+            {"type": "Feature", "properties": {"name": "SH아트홀", "class": "Theater", "category": "제40회_서울연극제", "form": "point", "address": "서울특별시 종로구 동숭길 25 SH아트홀", "refurl": "https://www.facebook.com/sharthall/"}, "geometry": {"type": "Point", "coordinates": [127, 37.58004]}},
+
+            {"type": "Feature", "properties": {"name": "JTN 아트홀", "class": "Theater", "category": "제36회_서울연극제", "form": "point", "address": "서울특별시 종로구 이화장길 26", "refurl": "http://www.jtnarthall.com/"}, "geometry": {"type": "Point", "coordinates": [127.003925, 37.576437]}},
+
+            {"type": "Feature", "properties": {"name": "남산예술센터", "class": "Theater", "category": "제37회_서울연극제", "form": "point", "address": "서울특별시 중구 소파로 138", "refurl": "https://www.nsac.or.kr/"}, "geometry": {"type": "Point", "coordinates": [126.98878, 37.559779]}},
+
+            {"type": "Feature", "properties": {"name": "대학로 예술마당", "class": "Theater", "category": "제36회_서울연극제", "form": "point", "address": "서울특별시 종로구 이화장길 26", "refurl": "null"}, "geometry": {"type": "Point", "coordinates": [127.003925, 37.576437]}},
+
+            {"type": "Feature", "properties": {"name": "대학로 자유극장", "class": "Theater", "category": "제36회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로12길 31", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC000785"}, "geometry": {"type": "Point", "coordinates": [127.003609, 37.5827]}},
+
+            {"type": "Feature", "properties": {"name": "드림아트센터", "class": "Theater", "category": "제38회_서울연극제", "form": "point", "address": "서울특별시 종로구 동숭2길 123", "refurl": "https://blog.naver.com/dreamartcenter"}, "geometry": {"type": "Point", "coordinates": [127.003281, 37.583265]}},
+
+            {"type": "Feature", "properties": {"name": "마포아트센터 아트홀 맥", "class": "Theater", "category": "제36회_서울연극제", "form": "point", "address": "서울특별시 마포구 대흥로20길 28", "refurl": "https://www.mfac.or.kr/foundation/facility_1.jsp"}, "geometry": {"type": "Point", "coordinates": [126.95, 37.549748]}},
+
+            {"type": "Feature", "properties": {"name": "알과핵", "class": "Theater", "category": "제38회_서울연극제", "form": "point", "address": "서울특별시 종로구 동숭동 1-140", "refurl": "https://www.kopis.or.kr/por/db/prfplc/prfplcView.do?menuId=MNU_00021&mt10Id=FC000416"}, "geometry": {"type": "Point", "coordinates": [127.003558, 37.579862]}},
+
+            {"type": "Feature", "properties": {"name": "예그린 씨어터", "class": "Theater", "category": "제37회_서울연극제", "form": "point", "address": "서울특별시 종로구 동숭동 1-8", "refurl": "http://yegreen.creatorlink.net/"}, "geometry": {"type": "Point", "coordinates": [127.003062, 37.58389]}},
+
+            {"type": "Feature", "properties": {"name": "유니플렉스", "class": "Theater", "category": "제39회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로12길 64", "refurl": "http://www.uniplex.co.kr/"}, "geometry": {"type": "Point", "coordinates": [127.003698, 37.581132]}},
+
+            {"type": "Feature", "properties": {"name": "이해랑예술극장", "class": "Theater", "category": "제38회_서울연극제", "form": "point", "address": "서울특별시 중구 필동로1길 30", "refurl": "https://larts.dongguk.edu/"}, "geometry": {"type": "Point", "coordinates": [126.99977, 37.558585]}},
+];  
+
+            L.geoJson(geodata, {
+                onEachFeature: function (feature, layer) {
+                            layer.bindPopup('<a href="' + feature.properties.refurl + '" target="_blank"><center><big><b>' + "[" + feature.properties.class + "]" +" " + feature.properties.name + '</b></big></a><br/>' + feature.properties.address)},
+
+                pointToLayer: function(feature, latlng) { 
+                    switch (feature.properties.category) {
+                                case '제31회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_31);
+                                case '제32회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_32);
+                                case '제33회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_33);
+                                case '제34회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_34);
+                                case '제35회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_35);
+                                case '제36회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_36);
+                                case '제37회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_37);
+                                case '제38회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_38);
+                                case '제39회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_39);
+                                case '제40회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_40);
+                                case '제41회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_41);
+                                case '제42회_서울연극제': return L.marker(latlng, {icon: theaterIcon}).addTo(map_42);
+                        }
+                    }
+                });
+	    </script> 
+    </body>
+</html>
+
