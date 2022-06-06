@@ -100,7 +100,7 @@
                 "제42회_서울연극제": map_42
             };
 
-            var ctr_mapLayers = L.control.layers(null, overlays, {collapsed:true, position:'bottomleft'}).addTo(map);
+            var ctr_mapLayers = L.control.layers(null, overlays, {collapsed:false, position:'bottomleft'}).addTo(map);
         
             var geodata =[
             {"type": "Feature", "properties": {"name": "대학로예술극장", "class": "Theater", "category": "제32회_서울연극제", "form": "point", "address": "서울특별시 종로구 대학로10길 17", "refurl": "https://theater.arko.or.kr/Pages/Main.aspx"}, "geometry": {"type": "Point", "coordinates": [127.00306, 37.58194]}},
